@@ -14,12 +14,16 @@ router.post("/add", (req, res) => {
     const tags = req.body.tags;
     const amount = req.body.amount;
     const color = req.body.color;
+    const date = req.body.date;
 
     const newItem = new Item({
         username,
         name,
         category,
-        tags, amount, color,
+        tags,
+        amount,
+        color,
+        date
     });
 
     newItem.save().then(()=>res.json("Item added")).catch(err => res.status(400).json('Error' + err));
@@ -41,6 +45,7 @@ router.post("/update/:id", (req, res) => {
         item.tags = req.body.tags;
         item.amount = req.body.amount;
         item.color = req.body.color;
+        item.date = req.body.date;
 
         item.save().then(() => res.json("item updated")).catch(err => res.status(400).json("Error" +err));
 

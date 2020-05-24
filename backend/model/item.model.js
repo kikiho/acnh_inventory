@@ -20,6 +20,9 @@ const itemSchema = new Schema({
     },
     color: {
         type: String,
+    },
+    date: {
+        type: Date, required: true
     }
 }, {timestamps: true});
 
