@@ -2,25 +2,24 @@ import React, { Component } from 'react';
 import axios from "axios";
 import "../App.css"
 import { Link } from 'react-router-dom';
-
+import "./item.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCouch, faEdit, faUserEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Item = props => (
-    <tr>
-        <td>{props.item.username}</td>
-        <td>{props.item.name}</td>
-        <td>{props.item.category}</td>
-        <td>{props.item.tags}</td>
-        <td>{props.item.amount}</td>
-        <td>{props.item.color}</td>
-        <td>{props.item.date === undefined
-            ? "None" : props.item.date.substring(0,10)}</td>
-        <td>
-            <Link to={"/edit/" + props.item._id}>edit</Link>|
-            <a href="#" onClick={() => {
+    <div className="grid-cell">
+        <div className="flexContainer">
+        <FontAwesomeIcon class="couchIcon" icon={faCouch} size="5x"></FontAwesomeIcon>
+        <p className="itemName">{props.item.name}</p>
+        <p className="itemAmount">Amount: {props.item.amount}</p>
+        <div className="editDeleteContainer">
+            <span className="itemButton"><Link id="editLink" to={"/edit/" + props.item._id}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Link></span>
+            <span className="itemButton" onClick={() => {
                 props.deleteItem(props.item._id);
-            }}>delete</a>
-        </td>
-    </tr>
+            }}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></span>
+        </div>
+    </div>
+    </div>
 );
 
 export default class ItemList extends Component {
@@ -98,23 +97,26 @@ export default class ItemList extends Component {
                        className="form control form-control lg"
                        placeholder="Search By Tag"
                        onChange={this.filter}/>
-                <table className="table">
-                    <thead className="thread-light">
-                        <tr>
-                            <th>username</th>
-                            <th>item name</th>
-                            <th>category</th>
-                            <th>tags</th>
-                            <th>amount</th>
-                            <th>colour</th>
-                            <th>date</th>
-                            <th>actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.buildItemList()}
-                    </tbody>
-                </table>
+                <div className="itemsContainer">
+                    { this.buildItemList()}
+                </div>
+                {/*<table className="table">*/}
+                {/*    <thead className="thread-light">*/}
+                {/*        <tr>*/}
+                {/*            <th>username</th>*/}
+                {/*            <th>item name</th>*/}
+                {/*            <th>category</th>*/}
+                {/*            <th>tags</th>*/}
+                {/*            <th>amount</th>*/}
+                {/*            <th>colour</th>*/}
+                {/*            <th>date</th>*/}
+                {/*            <th>actions</th>*/}
+                {/*        </tr>*/}
+                {/*    </thead>*/}
+                {/*    <tbody>*/}
+                {/*        */}
+                {/*    </tbody>*/}
+                {/*</table>*/}
             </div>)
     }
 };

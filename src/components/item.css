@@ -1,0 +1,43 @@
+.flexContainer {
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    height: 200px;
+    background-color: #7c908a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemsContainer {
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    grid-gap: 15px;
+}
+
+.editDeleteContainer {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.itemName {
+    font-size: 16pt;
+}
+
+.itemButton:hover {
+    background-color: #282c34;
+}
+
+#editLink {
+    color: white;
+}
+
+.grid-cell {
+    border-radius: 3px;
+}
