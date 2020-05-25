@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+/** NavBar Styles**/
+.navbar-item:hover {
+  background-color: #61dafb;
+}
+
+.navbar {
+  background-color: #7c908a;
+}

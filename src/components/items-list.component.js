@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import "../App.css"
+import { Link } from 'react-router-dom';
+
 
 const Item = props => (
     <tr>
@@ -11,6 +14,12 @@ const Item = props => (
         <td>{props.item.color}</td>
         <td>{props.item.date === undefined
             ? "None" : props.item.date.substring(0,10)}</td>
+        <td>
+            <Link to={"/edit/" + props.item._id}>edit</Link>|
+            <a href="#" onClick={() => {
+                props.deleteItem(props.item._id);
+            }}>delete</a>
+        </td>
     </tr>
 );
 
@@ -18,23 +27,24 @@ export default class ItemList extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteItem = this.deleteItem.bind(this);
-
         this.state = {
             items: [],
-        }
+        };
+
+        this.deleteItem = this.deleteItem.bind(this);
+        this.filter = this.filter.bind(this);
     }
 
     componentDidMount() {
         axios.get("http://localhost:5000/items/").then((res) => {
             this.setState({
-                items: res.data
+                items: res.data,
             })
         }).catch((err) => window.alert(err));
     }
 
     deleteItem(id) {
-        axios.delete("http://localhost:500/items/" + id).then((res)=>{
+        axios.delete("http://localhost:5000/items/" + id).then((res)=>{
             window.alert(res.data);
         }).catch((err) => window.alert(err));
 
@@ -45,14 +55,49 @@ export default class ItemList extends Component {
 
     buildItemList() {
         return this.state.items.map((currItem) => {
-           return <Item item = {currItem} deleteExercise={this.deleteItem} key={currItem._id}/>
+           return <Item item = {currItem} deleteItem={this.deleteItem} key={currItem._id}/>
         });
+    }
+
+    filter(e) {
+        //e.target.value will be search term
+        let searchTerm = e.target.value;
+        if (!searchTerm || searchTerm.length ===0) {
+            this.restoreInitialState();
+        }
+        let allItems = this.state.items;
+        let filteredList = [];
+        for (let item of allItems) {
+            let tags = item.tags;
+            for (let tag of tags) {
+                if (tag.toLowerCase().search(searchTerm) !== -1) {
+                    // there was a match add to filtered list
+                    if (!filteredList.includes(item)) filteredList.push(item);
+                }
+            }
+        }
+
+        this.setState({
+            items: filteredList
+        });
+    }
+
+    restoreInitialState() {
+        axios.get("http://localhost:5000/items/").then((res) => {
+            this.setState({
+                items: res.data
+            })
+        }).catch((err) => window.alert(err));
     }
 
     render() {
         return (
             <div>
             <h3>Inventory</h3>
+                <input type="text"
+                       className="form control form-control lg"
+                       placeholder="Search By Tag"
+                       onChange={this.filter}/>
                 <table className="table">
                     <thead className="thread-light">
                         <tr>
@@ -63,6 +108,7 @@ export default class ItemList extends Component {
                             <th>amount</th>
                             <th>colour</th>
                             <th>date</th>
+                            <th>actions</th>
                         </tr>
                     </thead>
                     <tbody>

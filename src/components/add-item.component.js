@@ -112,6 +112,7 @@ export default class AddItemComponent extends Component {
                                className="form-control"
                                value={this.state.name}
                                onChange={this.onChangeName}
+
                         />
                     </div>
                     <div className="form-group">

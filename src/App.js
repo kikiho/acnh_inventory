@@ -17,7 +17,7 @@ function App() {
             <NavBar />
             <br/>
             <Route path="/" exact component={ItemList} />
-            <Route path="/edit" exact component={EditItemComponent} />
+            <Route path="/edit/:id" exact component={EditItemComponent} />
             <Route path="/add" exact component={AddItemComponent} />
             <Route path="/user" exact component={CreateUserComponent} />
             </div>
