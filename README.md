@@ -4,8 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Running the Project Locally
 
-###Start up the server 
-
 Within the project directory, navigate to the backend directory
 
 ### `cd backend`
