@@ -4,14 +4,23 @@ import "../App.css"
 import { Link } from 'react-router-dom';
 import "./item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCouch, faEdit, faUserEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCouch, faEdit, faUserEdit, faTrash, faTools, faTshirt, faRulerCombined, faPaw} from '@fortawesome/free-solid-svg-icons';
+
+
+const iconMap = {
+    furniture: <FontAwesomeIcon icon={faCouch} size="3x"></FontAwesomeIcon>,
+    materials:  <FontAwesomeIcon icon={faRulerCombined} size="3x"></FontAwesomeIcon>,
+    clothes:  <FontAwesomeIcon icon={faTshirt} size="3x"></FontAwesomeIcon>,
+    tools:  <FontAwesomeIcon icon={faTools} size="3x"></FontAwesomeIcon>,
+    wildlife: <FontAwesomeIcon icon={faPaw} size="3x"></FontAwesomeIcon>
+};
 
 const Item = props => (
     <div className="grid-cell">
-        <div className="flexContainer">
-        <FontAwesomeIcon class="couchIcon" icon={faCouch} size="5x"></FontAwesomeIcon>
+        <div className="flexContainer"> {iconMap[props.item.category]}
         <p className="itemName">{props.item.name}</p>
         <p className="itemAmount">Amount: {props.item.amount}</p>
+        <p className="userThatAdded">Added By: {props.item.username}</p>
         <div className="editDeleteContainer">
             <span className="itemButton"><Link id="editLink" to={"/edit/" + props.item._id}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Link></span>
             <span className="itemButton" onClick={() => {
@@ -58,6 +67,7 @@ export default class ItemList extends Component {
         });
     }
 
+
     filter(e) {
         //e.target.value will be search term
         let searchTerm = e.target.value;
@@ -100,23 +110,6 @@ export default class ItemList extends Component {
                 <div className="itemsContainer">
                     { this.buildItemList()}
                 </div>
-                {/*<table className="table">*/}
-                {/*    <thead className="thread-light">*/}
-                {/*        <tr>*/}
-                {/*            <th>username</th>*/}
-                {/*            <th>item name</th>*/}
-                {/*            <th>category</th>*/}
-                {/*            <th>tags</th>*/}
-                {/*            <th>amount</th>*/}
-                {/*            <th>colour</th>*/}
-                {/*            <th>date</th>*/}
-                {/*            <th>actions</th>*/}
-                {/*        </tr>*/}
-                {/*    </thead>*/}
-                {/*    <tbody>*/}
-                {/*        */}
-                {/*    </tbody>*/}
-                {/*</table>*/}
             </div>)
     }
 };

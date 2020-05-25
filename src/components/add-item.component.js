@@ -15,6 +15,7 @@ export default class AddItemComponent extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.getUsersAsOptions = this.getUsersAsOptions.bind(this);
 
         this.state = {
             username: '',
@@ -29,12 +30,11 @@ export default class AddItemComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState(
-            {
-                users: ['test user'],
-                username: 'test user'
-            }
-        );
+        axios.get("http://localhost:5000/users").then((res) => {
+            this.setState({
+                users: res.data,
+            });
+        });
     }
 
     onChangeUsername(e) {
@@ -100,6 +100,12 @@ export default class AddItemComponent extends Component {
         window.location = '/';
     }
 
+    getUsersAsOptions() {
+        return this.state.users.map((user) => {
+           return <option>{user.username}</option>
+        });
+    }
+
     render() {
         return (
             <div>
@@ -117,21 +123,25 @@ export default class AddItemComponent extends Component {
                     </div>
                     <div className="form-group">
                         <label>Username</label>
-                        <input type="text"
-                               required
-                               className="form-control"
-                               value={this.state.username}
-                               onChange={this.onChangeUsername}
-                        />
+                        <select className="form-control" id="usersDropdown"
+                                onChange={this.onChangeUsername}
+                                value={this.state.username}
+                                required>
+                            {this.getUsersAsOptions()}
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Category</label>
-                        <input type="text"
-                               required
-                               className="form-control"
-                               value={this.state.category}
-                               onChange={this.onChangeCategory}
-                        />
+                        <select className="form-control" id="categoryDropdown"
+                                onChange={this.onChangeCategory}
+                                value={this.state.category}
+                                required>
+                            <option>furniture</option>
+                            <option>materials</option>
+                            <option>clothes</option>
+                            <option>tools</option>
+                            <option>wildlife</option>
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Tags</label>
@@ -170,7 +180,9 @@ export default class AddItemComponent extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Add New Item" className="btn btn-primary" />
+                        <input type="submit"
+                               value ="Add Item"
+                               className="btn btn-outline-primary"/>
                     </div>
                 </form>
             </div>
