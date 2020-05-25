@@ -10,6 +10,8 @@ Within the project directory, navigate to the backend directory
 #### `cd backend`
 (path = /anch-inventory/backend)
 
+#### Run `npm install`
+
 To start up the server:
 #### `nodemon server.js`
 
@@ -21,6 +23,7 @@ The console should eventually print:
 
 In the project directory, you can run:
 
+#### `npm install`
 #### `yarn start`
 
 Runs the app in the development mode.<br />
