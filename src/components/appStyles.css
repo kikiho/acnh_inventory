@@ -1,0 +1,42 @@
+.picker {
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #AD7A3E;
+}
+.flatButton {
+    border: 2px solid #AD7A3E;
+    border-radius: 5px;
+    color: #AD7A3E;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.flatButton:hover {
+    background-color: #AD7A3E;
+    color: white;
+}
+
+.labels {
+    text-align: left;
+    width: 150px;
+    font-weight: bold;
+    color: #AD7A3E;
+    padding: 20px;
+}
+
+.inputContainer {
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.titleText {
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
+    letter-spacing: 3px;
+    font-weight: bold;
+    padding: 15px;
+    font-size: 30pt;
+    color: #744436;
+}

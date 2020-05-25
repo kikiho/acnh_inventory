@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import "../App.css"
 import { Link } from 'react-router-dom';
-import "./item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCouch, faEdit, faTrash, faTools, faTshirt, faRulerCombined, faPaw} from '@fortawesome/free-solid-svg-icons';
+
+import "./item.css";
+import "../App.css"
+import "./appStyles.css"
+
+const inputStyle = {
+    padding: "15px",
+    borderRadius: "5px",
+    border: "2px solid #AD7A3E"
+};
 
 const iconMap = {
     furniture: <FontAwesomeIcon icon={faCouch} size="3x"></FontAwesomeIcon>,
@@ -33,6 +41,8 @@ const Item = props => (
     </div>
     </div>
 );
+
+
 
 export default class ItemList extends Component {
     constructor(props) {
@@ -104,10 +114,11 @@ export default class ItemList extends Component {
 
     render() {
         return (<div>
-            <h3>Inventory</h3>
+            <div className="titleText">Inventory</div>
                 <input type="text"
                        className="form control form-control lg"
                        placeholder="Search By Tag"
+                       style={inputStyle}
                        onChange={this.filter}/>
                 <div className="itemsContainer">
                     { this.buildItemList()}

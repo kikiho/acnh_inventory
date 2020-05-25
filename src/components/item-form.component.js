@@ -4,6 +4,11 @@ import Spinner from 'react-bootstrap/Spinner'
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
+const inputStyle = {
+    padding: "15px",
+    borderRadius: "5px",
+    border: "2px solid #AD7A3E"
+};
 export default class ItemForm extends Component {
     constructor(props) {
         super(props);
@@ -136,32 +141,38 @@ export default class ItemForm extends Component {
             :
             (
             <div>
-                <h3>{textTitle}</h3>
+                <div className="titleText">{textTitle}</div>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Item Name</label>
+                        <div className="inputContainer"><label className="labels">Item Name</label>
                         <input type="text"
                                required
                                className="form-control"
                                value={this.state.name}
+                               style={inputStyle}
                                onChange={this.onChangeName}
 
-                        />
+                        /></div>
                     </div>
                     <div className="form-group">
-                        <label>Username</label>
+                        <div className="inputContainer">
+                            <label className="labels">Username</label>
                         <select className="form-control" id="usersDropdown"
                                 onChange={this.onChangeUsername}
                                 value={this.state.username}
+                                style={inputStyle}
                                 required>
                             {this.getUsersAsOptions()}
                         </select>
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label>Category</label>
+                        <div className="inputContainer">
+                            <label className="labels">Category</label>
                         <select className="form-control" id="categoryDropdown"
                                 onChange={this.onChangeCategory}
                                 value={this.state.category}
+                                style={inputStyle}
                                 required>
                             <option>furniture</option>
                             <option>materials</option>
@@ -169,47 +180,60 @@ export default class ItemForm extends Component {
                             <option>tools</option>
                             <option>wildlife</option>
                         </select>
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label>Tags</label>
+                        <div className="inputContainer">
+                            <label className="labels">Tags</label>
                         <input type="text"
                                required
                                className="form-control"
                                value={this.state.tags}
+                               style={inputStyle}
                                onChange={this.onChangeTags}
                         />
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label>Amount</label>
+                        <div className="inputContainer">
+                            <label className="labels">Amount</label>
                         <input type="text"
                                required
                                className="form-control"
                                value={this.state.amount}
                                onChange={this.onChangeAmount}
+                               style={inputStyle}
                         />
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label>Colour</label>
+                        <div className="inputContainer">
+                            <label className="labels">Colour</label>
                         <input type="text"
                                required
                                className="form-control"
                                value={this.state.color}
                                onChange={this.onChangeColor}
-                        />
+                               style={inputStyle}
+                        /></div>
                     </div>
                     <div className="form-group">
-                        <label>Date</label>
+                        <div className="inputContainer">
+                            <label className="labels">Date</label>
                         <div>
                             <DatePicker
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
+                                className="picker"
                             />
+                        </div>
                         </div>
                     </div>
                     <div className="form-group">
                         <input type="submit"
                                value ={textTitle}
-                               className="btn btn-outline-primary"/>
+                               className="flatButton"
+                        />
                     </div>
                 </form>
             </div>

@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import "./appStyles.css"
+
+//TODO Make this styling better
+const inputStyle = {
+    padding: "15px",
+    borderRadius: "5px",
+    border: "2px solid #AD7A3E"
+};
 
 export default class CreateUserComponent extends Component {
     constructor(props) {
@@ -36,20 +44,22 @@ export default class CreateUserComponent extends Component {
 
     render() {
         return (<div>
-            <h3> Create New User</h3>
+            <div className="titleText"> Create New User</div>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label>Username: </label>
+                    <div className="inputContainer">
+                    <label className="labels">Username </label>
                     <input type="text"
+                           style={inputStyle}
                            required
                            className="form-control"
                            value={this.state.username}
-                           onChange={this.onChangeUsername}/>
+                           onChange={this.onChangeUsername}/></div>
                 </div>
                 <div className="form-group">
                     <input type="submit"
                            value ="Add User"
-                           className="btn btn-outline-primary"/>
+                           className="flatButton"/>
                 </div>
             </form>
         </div>)

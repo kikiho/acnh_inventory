@@ -3,7 +3,7 @@
     padding: 15px;
     max-width: 200px;
     min-height: 200px;
-    background-color: #7c908a;
+    background-color: #6C8680;
     color: white;
     display: flex;
     flex-direction: column;
@@ -26,16 +26,20 @@
 }
 
 .itemName {
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
+    font-weight: bold;
     font-size: 16pt;
     margin:0;
 }
 
 .itemAmount {
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
     padding: 5px;
     margin:0;
 }
 
 .userThatAdded {
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
     padding: 5px;
     margin:0;
 }
