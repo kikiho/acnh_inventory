@@ -4,8 +4,7 @@ import "../App.css"
 import { Link } from 'react-router-dom';
 import "./item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCouch, faEdit, faUserEdit, faTrash, faTools, faTshirt, faRulerCombined, faPaw} from '@fortawesome/free-solid-svg-icons';
-
+import { faCouch, faEdit, faTrash, faTools, faTshirt, faRulerCombined, faPaw} from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = {
     furniture: <FontAwesomeIcon icon={faCouch} size="3x"></FontAwesomeIcon>,
@@ -22,7 +21,11 @@ const Item = props => (
         <p className="itemAmount">Amount: {props.item.amount}</p>
         <p className="userThatAdded">Added By: {props.item.username}</p>
         <div className="editDeleteContainer">
-            <span className="itemButton"><Link id="editLink" to={"/edit/" + props.item._id}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Link></span>
+            <span className="itemButton">
+                <Link id="editLink" to={"/edit/" + props.item._id}>
+                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                </Link>
+            </span>
             <span className="itemButton" onClick={() => {
                 props.deleteItem(props.item._id);
             }}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></span>
@@ -100,8 +103,7 @@ export default class ItemList extends Component {
     }
 
     render() {
-        return (
-            <div>
+        return (<div>
             <h3>Inventory</h3>
                 <input type="text"
                        className="form control form-control lg"

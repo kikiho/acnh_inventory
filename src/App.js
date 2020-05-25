@@ -4,9 +4,8 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/navbar.component";
 import ItemList from "./components/items-list.component";
-import EditItemComponent from "./components/edit-item.component";
-import AddItemComponent from "./components/add-item.component";
 import CreateUserComponent from "./components/create-user.component";
+import ItemForm from "./components/item-form.component";
 
 
 function App() {
@@ -17,8 +16,8 @@ function App() {
             <NavBar />
             <br/>
             <Route path="/" exact component={ItemList} />
-            <Route path="/edit/:id" exact component={EditItemComponent} />
-            <Route path="/add" exact component={AddItemComponent} />
+            <Route path="/edit/:id" exact component={ItemForm} />
+            <Route path="/add" exact component={ItemForm} />
             <Route path="/user" exact component={CreateUserComponent} />
             </div>
         </Router>

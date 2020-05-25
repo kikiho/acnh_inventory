@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker/es";
+import Spinner from 'react-bootstrap/Spinner'
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
-export default class AddItemComponent extends Component {
+export default class ItemForm extends Component {
     constructor(props) {
         super(props);
 
@@ -18,6 +19,7 @@ export default class AddItemComponent extends Component {
         this.getUsersAsOptions = this.getUsersAsOptions.bind(this);
 
         this.state = {
+            editMode: false,
             username: '',
             name: '',
             category: '',
@@ -25,16 +27,38 @@ export default class AddItemComponent extends Component {
             amount: 0,
             color: '',
             date: new Date(),
-            users: []
+            users: [],
+            loading: true,
         }
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5000/users").then((res) => {
-            this.setState({
-                users: res.data,
+        if (this.props.match.params.id !== undefined) {
+            // has an id, therefore Edit Mode
+            axios.get('http://localhost:5000/items/' + this.props.match.params.id).then((res)=> {
+                this.setState({
+                    username: res.data.username,
+                    name: res.data.name,
+                    category: res.data.category,
+                    tags: res.data.tags,
+                    amount: res.data.amount,
+                    color: res.data.color,
+                    date: new Date(res.data.date),
+                    loading: false,
+                    editMode: true,
+                })
+            }).catch((err) => {
+                window.alert(err);
             });
-        });
+        } else {
+            //Create Mode
+            axios.get("http://localhost:5000/users").then((res) => {
+                this.setState({
+                    users: res.data,
+                    loading: false,
+                });
+            });
+        }
     }
 
     onChangeUsername(e) {
@@ -94,7 +118,7 @@ export default class AddItemComponent extends Component {
             color: this.state.color,
             date: this.state.date,
         };
-
+        // if edit => post to update, if create post to add
         axios.post('http://localhost:5000/items/add', item).then((res) => console.log(res.data)).catch((err) => console.log(err));
 
         window.location = '/';
@@ -102,14 +126,17 @@ export default class AddItemComponent extends Component {
 
     getUsersAsOptions() {
         return this.state.users.map((user) => {
-           return <option>{user.username}</option>
+            return <option key={user.username}>{user.username}</option>
         });
     }
 
     render() {
-        return (
+        const textTitle = this.state.editMode ? "Edit Item" : "Add New Item";
+        return this.state.loading ? (<Spinner animation="grow" variant="primary" />)
+            :
+            (
             <div>
-                <h3>Add new item</h3>
+                <h3>{textTitle}</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Item Name</label>
@@ -181,7 +208,7 @@ export default class AddItemComponent extends Component {
                     </div>
                     <div className="form-group">
                         <input type="submit"
-                               value ="Add Item"
+                               value ={textTitle}
                                className="btn btn-outline-primary"/>
                     </div>
                 </form>
