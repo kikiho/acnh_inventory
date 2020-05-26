@@ -66,7 +66,7 @@ export default class ItemList extends Component {
 
     deleteItem(id) {
         axios.delete("http://localhost:5000/items/" + id).then((res)=>{
-            window.alert(res.data);
+            console.log(res.data);
         }).catch((err) => window.alert(err));
 
         this.setState({

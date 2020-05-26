@@ -27,7 +27,7 @@ export default class ItemForm extends Component {
             editMode: false,
             username: '',
             name: '',
-            category: '',
+            category: 'furniture',
             tags: [],
             amount: 0,
             color: '',
@@ -38,6 +38,15 @@ export default class ItemForm extends Component {
     }
 
     componentDidMount() {
+        axios.get("http://localhost:5000/users").then((res) => {
+            console.log(res.data);
+            this.setState({
+                users: res.data,
+                username: res.data[0].username,
+                loading: false,
+            });
+        });
+
         if (this.props.match.params.id !== undefined) {
             // has an id, therefore Edit Mode
             axios.get('http://localhost:5000/items/' + this.props.match.params.id).then((res)=> {
@@ -54,14 +63,6 @@ export default class ItemForm extends Component {
                 })
             }).catch((err) => {
                 window.alert(err);
-            });
-        } else {
-            //Create Mode
-            axios.get("http://localhost:5000/users").then((res) => {
-                this.setState({
-                    users: res.data,
-                    loading: false,
-                });
             });
         }
     }
@@ -123,8 +124,12 @@ export default class ItemForm extends Component {
             color: this.state.color,
             date: this.state.date,
         };
-        // if edit => post to update, if create post to add
-        axios.post('http://localhost:5000/items/add', item).then((res) => console.log(res.data)).catch((err) => console.log(err));
+        if (this.state.editMode) {
+            axios.post('http://localhost:5000/items/update/' + this.props.match.params.id, item).then((res) => console.log(res.data)).catch((err) => console.log(err));
+
+        } else {
+            axios.post('http://localhost:5000/items/add', item).then((res) => console.log(res.data)).catch((err) => console.log(err));
+        }
 
         window.location = '/';
     }
