@@ -4,25 +4,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Running the Project Locally
 
-###Start up the server 
-
+### Start the Server! 
 Within the project directory, navigate to the backend directory
 
-### `cd backend`
+#### `cd backend`
 (path = /anch-inventory/backend)
 
+#### Run `npm install`
+
 To start up the server:
-### `nodemon server.js`
+#### `nodemon server.js`
 
 The console should eventually print: 
 `Server is running on port: 5000`
 `Database connection established`
 
-###Check out the front end! 
+### Check out the front end! 
 
 In the project directory, you can run:
 
-### `yarn start`
+#### `npm install`
+#### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
