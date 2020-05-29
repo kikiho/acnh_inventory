@@ -7,7 +7,8 @@ import ItemForm from "./components/item-form.component";
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./components/appStyles.css";
+import "./components/styles/appStyles.css";
+import DaysDisplay from "./components/days-display.component";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/edit/:id" exact component={ItemForm} />
             <Route path="/add" exact component={ItemForm} />
             <Route path="/user" exact component={CreateUserComponent} />
+            <Route path="/days" exact component={DaysDisplay}/>
             </div>
         </Router>
     </div>

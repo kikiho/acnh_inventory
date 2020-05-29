@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import "./appStyles.css"
+import "./styles/appStyles.css"
 
 //TODO Make this styling better
 const inputStyle = {

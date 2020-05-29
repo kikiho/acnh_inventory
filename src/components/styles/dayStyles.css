@@ -1,0 +1,59 @@
+.dayContainer {
+    background-color: #AD7A3E;
+    width: 150px;
+    min-height: 80px;
+    max-height: 200px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dayText {
+    padding-top: 5px;
+    margin: 0;
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
+    font-size: 28pt;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.singleDayContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.monthText {
+    font-weight: bold;
+    font-size: 24pt;
+    letter-spacing: 2px;
+}
+
+.weekdayText{
+    font-size: 16pt;
+}
+
+.singleDayContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.npcImage {
+    width: 100px;
+}
+
+.npcContainer {
+    padding: 10px;
+    display: flex;
+    flex-display: row;
+    align-items: center;
+}
+
+.singleNPC {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+

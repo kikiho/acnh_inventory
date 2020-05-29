@@ -19,9 +19,11 @@ mongoose.connect(uri, {
 //
 const usersRouter = require('./routes/users');
 const itemsRouter = require('./routes/items');
+const dayRouter = require('./routes/day');
 
 app.use('/users', usersRouter);
 app.use('/items', itemsRouter);
+app.use('/days', dayRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

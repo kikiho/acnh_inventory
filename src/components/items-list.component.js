@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCouch, faEdit, faTrash, faTools, faTshirt, faRulerCombined, faPaw} from '@fortawesome/free-solid-svg-icons';
 
-import "./item.css";
+import "./styles/item.css";
 import "../App.css"
-import "./appStyles.css"
+import "./styles/appStyles.css"
 
 const inputStyle = {
     padding: "15px",
@@ -41,8 +41,6 @@ const Item = props => (
     </div>
     </div>
 );
-
-
 
 export default class ItemList extends Component {
     constructor(props) {
